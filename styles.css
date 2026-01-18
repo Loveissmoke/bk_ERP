@@ -224,6 +224,11 @@ input:focus {
    PRINT
    ===================== */
 @media print {
+    
+    @page {
+    size: A4;
+    margin: 15mm;
+    }
     .menu,
     .menu-btn {
         display: none !important;
@@ -233,6 +238,7 @@ input:focus {
         background: #ffffff !important;
         padding: 0;
         margin: 0;
+        font-size: 9pt;
     }
 
     * {
@@ -240,46 +246,6 @@ input:focus {
         print-color-adjust: exact !important;
         color-adjust: exact !important;
     }
-
-    table {
-        box-shadow: none !important;
-        border-radius: 14px !important;
-    }
-}
-
-/* size of box*/
-.total-pcs,
-.total-etb {
-    width: 100px; /* increase width to allow bigger numbers */
-    min-width: 80px; /* optional: prevents shrinking too much */
-    padding-left: 10px; /* optional: better readability */
-    padding-right: 10px;
-    text-align: right; /* numbers aligned right looks nicer */
-}
-
-.grand-total-etb {
-    width: 110px;
-    min-width: 80px; 
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: right;
-    color: #000;
-}
-
-
-@media print {
-
-
-    @page {
-        size: A4;
-        margin: 15mm;
-    }
-
-    /* 2️⃣ Compact layout for print */
-    body {
-        font-size: 9pt;
-    }
-
     thead th {
         padding: 6px 6px !important;
         font-size: 9pt;
@@ -296,12 +262,11 @@ input:focus {
         height: auto !important;
     }
 
-    /* 3️⃣ Natural page flow */
     table {
         page-break-inside: auto;
+        box-shadow: none !important;
+        border-radius: 14px !important;
     }
-
-    /* 4️⃣ Prevent row splitting */
     tr {
         page-break-inside: avoid;
         break-inside: avoid;
@@ -331,31 +296,21 @@ input:focus {
     }
 }
 
-@media print {
+/* size of box*/
+.total-pcs,
+.total-etb {
+    width: 100px; /* increase width to allow bigger numbers */
+    min-width: 80px; /* optional: prevents shrinking too much */
+    padding-left: 10px; /* optional: better readability */
+    padding-right: 10px;
+    text-align: right; /* numbers aligned right looks nicer */
+}
 
-    /* Force exact scaling */
-    html, body {
-        width: 100%;
-        zoom: 1;
-    }
-
-    /* Prevent width overflow */
-    table {
-        width: 100% !important;
-        max-width: 100% !important;
-        table-layout: fixed;
-    }
-
-    /* Include padding inside width calculations */
-    th, td, input {
-        box-sizing: border-box;
-    }
-
-    /* Slightly shrink wide numeric columns */
-    .total-pcs,
-    .total-etb,
-    .grand-total-etb {
-        width: 90px !important;
-        min-width: 90px !important;
-    }
+.grand-total-etb {
+    width: 110px;
+    min-width: 80px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+    color: #000;
 }
