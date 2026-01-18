@@ -331,3 +331,31 @@ input:focus {
     }
 }
 
+@media print {
+
+    /* Force exact scaling */
+    html, body {
+        width: 100%;
+        zoom: 1;
+    }
+
+    /* Prevent width overflow */
+    table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed;
+    }
+
+    /* Include padding inside width calculations */
+    th, td, input {
+        box-sizing: border-box;
+    }
+
+    /* Slightly shrink wide numeric columns */
+    .total-pcs,
+    .total-etb,
+    .grand-total-etb {
+        width: 90px !important;
+        min-width: 90px !important;
+    }
+}
