@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BEKI</title>
+
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<!-- ===== Hamburger Menu ===== -->
+<div class="menu">
+    <button class="menu-btn">☰</button>
+    <div class="menu-list">
+        <button onclick="saveData()">Save</button>
+        <button onclick="loadData()">Load</button>
+        <button onclick="exportExcel()">Export XLSX</button>
+        <button onclick="window.print()">Print</button>
+        <button onclick="about()">About</button>
+    </div>
+</div>
+
+<!-- ===== Date (TEXT display + hidden picker) ===== -->
+<div class="top-bar">
+    <input type="text" id="dateDisplay" readonly>
+    <input type="date" id="datePicker">
+</div>
+
+<table id="salesTable">
+<thead>
+<tr>
+    <th>Item</th>
+    <th colspan="3">Issue</th>
+    <th colspan="3">Return</th>
+    <th colspan="3">Sales</th>
+    <th>Total PCS Sold</th>
+    <th>Total ETB</th>
+</tr>
+<tr>
+    <th></th>
+    <th>CZ</th><th>DZ</th><th>PC</th>
+    <th>CZ</th><th>DZ</th><th>PC</th>
+    <th>CZ</th><th>DZ</th><th>PC</th>
+    <th></th>
+    <th></th>
+</tr>
+</thead>
+
+<tbody>
+    
+    
+    
+<tr>
+<td>KNORR_AIO</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>KNORR_CHICKEN</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>LIFEBOUY_T_70g</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>LIFEBOUY_L_70g</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>LIFEBUOY_T_20G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>LIFEBUOY_L_20G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+
+<tr>
+<td>LIFEBUOY_T_150G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>LIFEBUOY_L_150G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>LUX_ST_70G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>LUX_SC_70G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>LUX_ST_150G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>LUX_SC_150G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>SIGNAL_30G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SIGNAL_60G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SIGNAL_140G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSSHACOC350ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSCONDCOC350ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSSHAAVO350ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSCONDAVO350ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+
+<tr>
+<td>SSSHACOC700ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSCONDCOC700ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSSHAAVO700ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSCONDAVO700ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSSHACOC15ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SSCONDCOC15ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SUNLIGHT_P_40G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SUNLIGHT_P_90G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>SUNLIGHT_P_500G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>SUNLIGHT_P_1KG</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>SUNLIGHT_P_5KG</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>OMO40G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>OMO100G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>OMO500G</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+
+<tr>
+<td>OMO1KG</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>OMO3KG</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>VASELINE_B_45ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VASELINE_O_45ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VASELINE_B_95ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VASELINE_O_95ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VASELINE_B_240ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VASELINE_O_240ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VL_COCOA_200ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>VL_ALOE_200ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>VL_DRYSKIN_200ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+
+<tr>
+<td>VL_COCOA_400ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+<tr>
+<td>VL_ALOE_400ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr>
+
+
+<tr>
+<td>VL_DRYSKIN_400ML</td>
+<td><input class="issue-cz" placeholder="0"></td>
+<td><input class="issue-dz" placeholder="0"></td>
+<td><input class="issue-pc" placeholder="0"></td>
+<td><input class="return-cz" placeholder="0"></td>
+<td><input class="return-dz" placeholder="0"></td>
+<td><input class="return-pc" placeholder="0"></td>
+<td><input class="sales-cz readonly" readonly></td>
+<td><input class="sales-dz readonly" readonly></td>
+<td><input class="sales-pc readonly" readonly></td>
+<td><input class="total-pcs readonly" readonly></td>
+<td><input class="total-etb total-pcs readonly" readonly></td>
+</tr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+
+<tfoot>
+<tr>
+    <td colspan="11" style="text-align:right; padding-right:14px; font-weight:700;">Grand Total (ETB)</td>
+    <td><input class="grand-total-etb readonly" readonly></td>
+</tr>
+</tfoot>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
